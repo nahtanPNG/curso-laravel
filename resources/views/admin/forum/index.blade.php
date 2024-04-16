@@ -9,7 +9,7 @@
         <th>Descrição</th>
     </thead>
     <tbody>
-        @foreach ($supports as $$support)
+        @foreach ($supports as $support)
             <tr>
                 <td>{{ $support->subject }}</td>
                 <td>{{ $support->status }}</td>

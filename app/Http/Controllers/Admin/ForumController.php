@@ -20,8 +20,13 @@ class ForumController extends Controller
         return view('admin/forum/create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Forum $forum)
     {
-        dd($request->all());
+        $data = $request->all();
+        $data['status'] = 'active';
+
+        $forum->create($data);
+        
+        return redirect()->route('forum.index');
     }
 }

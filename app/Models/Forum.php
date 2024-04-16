@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     use HasFactory;
+
+    protected $fillable = [ //Definindo as colunas que serao preenchidas
+        'subject',
+        'body',
+        'status'
+    ];
 }
