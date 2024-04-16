@@ -15,7 +15,8 @@
                 <td>{{ $support->status }}</td>
                 <td>{{ $support->body }}</td>
                 <td>
-                    >
+                    <a href="{{ route('forum.show', $support->id)}}">Detalhes</a> {{--Enviando para a rota e o ID como parametro--}}
+                    <a href="{{ route('forum.edit', $support->id)}}">Editar</a>
                 </td>
             </tr>
         @endforeach
