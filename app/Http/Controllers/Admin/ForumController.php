@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateForum;
 use App\Models\Forum;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,9 @@ class ForumController extends Controller
         return view('admin/forum/create');
     }
 
-    public function store(Request $request, Forum $forum)
+    public function store(StoreUpdateForum $request, Forum $forum)
     {
-        $data = $request->all(); //Buscando todos os campos da requicisao 
+        $data = $request->validated(); //Buscando apenas os campos validados 
         $data['status'] = 'active';
 
         $forum->create($data);
@@ -51,13 +52,13 @@ class ForumController extends Controller
         return view('admin/forum/edit', compact('support'));
     }
 
-    public function update(Request $request, string|int $id, Forum $support)
+    public function update(StoreUpdateForum $request, string|int $id, Forum $support)
     {
         if (!$support = $support->where('id', $id)->first()){
             return back();
         }
         
-        $support->update($request->only(['subject', 'body']));
+        $support->update($request->validated());
 
         return redirect()->route('forum.index');
     }
